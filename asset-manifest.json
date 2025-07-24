@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/vecto-tv-test-task/static/css/main.b98e4b32.css",
+    "main.js": "/vecto-tv-test-task/static/js/main.dab3af2e.js",
+    "static/media/FeaturedCoverImage.png": "/vecto-tv-test-task/static/media/FeaturedCoverImage.3b40049b902e17981f91.png",
+    "static/media/https_specials-1.png": "/vecto-tv-test-task/static/media/https_specials-1.fc3a28f87943c3bee908.png",
+    "static/media/https_specials-8.png": "/vecto-tv-test-task/static/media/https_specials-8.0048dec35a4cf4cb8ff7.png",
+    "static/media/https_specials-5.png": "/vecto-tv-test-task/static/media/https_specials-5.12810bd3ded58324c48e.png",
+    "static/media/https_specials-6.png": "/vecto-tv-test-task/static/media/https_specials-6.38b6716b26c954e24ba1.png",
+    "static/media/https_specials-7.png": "/vecto-tv-test-task/static/media/https_specials-7.4815e4dcc34b202b203d.png",
+    "static/media/https_specials-2.png": "/vecto-tv-test-task/static/media/https_specials-2.d54d1960d0f6be421cce.png",
+    "static/media/https_specials-4.png": "/vecto-tv-test-task/static/media/https_specials-4.11f6f8ae6020f84cb2f5.png",
+    "static/media/https_specials-3.png": "/vecto-tv-test-task/static/media/https_specials-3.f25ccc61eb857efc7d95.png",
+    "static/media/squid-game-player456-2.jpg": "/vecto-tv-test-task/static/media/squid-game-player456-2.804ef331156d0a85d767.jpg",
+    "static/media/FeaturedTitleImage.png": "/vecto-tv-test-task/static/media/FeaturedTitleImage.ee484156ac9cc73d829d.png",
+    "index.html": "/vecto-tv-test-task/index.html",
+    "main.b98e4b32.css.map": "/vecto-tv-test-task/static/css/main.b98e4b32.css.map",
+    "main.dab3af2e.js.map": "/vecto-tv-test-task/static/js/main.dab3af2e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b98e4b32.css",
+    "static/js/main.dab3af2e.js"
+  ]
+}
