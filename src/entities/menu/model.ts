@@ -1,13 +1,16 @@
 import { MenuItem, ProfileInfo } from './types';
-import homeIcon from '@/shared/assets/icons/Group46.png';
-import tvShowsIcon from '@/shared/assets/icons/Group47.png';
-import moviesIcon from '@/shared/assets/icons/Group53.png';
-import genresIcon from '@/shared/assets/icons/Group54.png';
-import watchLaterIcon from '@/shared/assets/icons/Group56.png';
-import searchIcon from '@/shared/assets/icons/Search.png';
-import languageIcon from '@/shared/assets/icons/Group54.png';
-import getHelpIcon from '@/shared/assets/icons/Group47.png';
-import avatar from '@/shared/assets/squid-game-player456-2.jpg';
+import { getIconPath, getImagePath } from '@/shared/utils/paths';
+
+// Use public URLs for GitHub Pages compatibility
+const homeIcon = getIconPath('Group46.png');
+const tvShowsIcon = getIconPath('Group47.png');
+const moviesIcon = getIconPath('Group53.png');
+const genresIcon = getIconPath('Group54.png');
+const watchLaterIcon = getIconPath('Group56.png');
+const searchIcon = getIconPath('Search.png');
+const languageIcon = getIconPath('Group54.png');
+const getHelpIcon = getIconPath('Group47.png');
+const avatar = getImagePath('squid-game-player456-2.jpg');
 
 export const defaultMenuItems: MenuItem[] = [
   {

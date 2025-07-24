@@ -5,7 +5,9 @@
   gap: var(--space-2);
   padding: 24px var(--space-5); /* Added 24px top/bottom padding */
   border: none;
-  border-radius: var(--radius-3xl); /* Increased to 3xl for even more rounded corners */
+  border-radius: var(
+    --radius-3xl
+  ); /* Increased to 3xl for even more rounded corners */
   font-family: var(--font-family-primary);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
