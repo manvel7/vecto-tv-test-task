@@ -1,14 +1,13 @@
 {
   "files": {
     "main.css": "/vecto-test-task/static/css/main.f5104cb6.css",
-    "main.js": "/vecto-test-task/static/js/main.530342e8.js",
-    "static/media/squid-game-player456-2.jpg": "/vecto-test-task/static/media/squid-game-player456-2.804ef331156d0a85d767.jpg",
+    "main.js": "/vecto-test-task/static/js/main.f3ea038c.js",
     "index.html": "/vecto-test-task/index.html",
     "main.f5104cb6.css.map": "/vecto-test-task/static/css/main.f5104cb6.css.map",
-    "main.530342e8.js.map": "/vecto-test-task/static/js/main.530342e8.js.map"
+    "main.f3ea038c.js.map": "/vecto-test-task/static/js/main.f3ea038c.js.map"
   },
   "entrypoints": [
     "static/css/main.f5104cb6.css",
-    "static/js/main.530342e8.js"
+    "static/js/main.f3ea038c.js"
   ]
 }
