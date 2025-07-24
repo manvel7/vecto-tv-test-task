@@ -51,7 +51,15 @@ export const useCarousel = (totalItems: number, visibleItems: number = 8) => {
         clampedIndex = 0;
       }
 
-      const itemWidth = carouselRef.current.scrollWidth / totalItems;
+      // Use fixed item width based on screen size
+      const getItemWidth = () => {
+        if (window.innerWidth <= 480) return 120;
+        if (window.innerWidth <= 768) return 150;
+        if (window.innerWidth <= 1024) return 180;
+        return 200;
+      };
+
+      const itemWidth = getItemWidth() + 16; // 16px gap
       const scrollPosition = clampedIndex * itemWidth;
 
       carouselRef.current.scrollTo({
@@ -61,7 +69,7 @@ export const useCarousel = (totalItems: number, visibleItems: number = 8) => {
 
       setCurrentIndex(clampedIndex);
     },
-    [maxIndex, totalItems, setCurrentIndex, needsScrolling]
+    [maxIndex, setCurrentIndex, needsScrolling]
   );
 
   // Enhanced scroll to center an item (useful for mobile clicks)
@@ -70,7 +78,14 @@ export const useCarousel = (totalItems: number, visibleItems: number = 8) => {
       if (!carouselRef.current || !needsScrolling) return;
 
       const containerWidth = carouselRef.current.clientWidth;
-      const itemWidth = carouselRef.current.scrollWidth / totalItems;
+      const getItemWidth = () => {
+        if (window.innerWidth <= 480) return 120;
+        if (window.innerWidth <= 768) return 150;
+        if (window.innerWidth <= 1024) return 180;
+        return 200;
+      };
+
+      const itemWidth = getItemWidth() + 16; // 16px gap
       const centerOffset = containerWidth / 2 - itemWidth / 2;
       const scrollPosition = itemIndex * itemWidth - centerOffset;
 
@@ -81,7 +96,7 @@ export const useCarousel = (totalItems: number, visibleItems: number = 8) => {
 
       setCurrentIndex(itemIndex);
     },
-    [totalItems, setCurrentIndex, needsScrolling]
+    [setCurrentIndex, needsScrolling]
   );
 
   const scrollLeft = useCallback(() => {
@@ -237,13 +252,24 @@ export const useCarousel = (totalItems: number, visibleItems: number = 8) => {
     if (!carousel || !needsScrolling) return;
 
     const scrollLeft = carousel.scrollLeft;
-    const itemWidth = carousel.scrollWidth / totalItems;
+    const getItemWidth = () => {
+      if (window.innerWidth <= 480) return 120;
+      if (window.innerWidth <= 768) return 150;
+      if (window.innerWidth <= 1024) return 180;
+      return 200;
+    };
+
+    const itemWidth = getItemWidth() + 16; // 16px gap
     const newIndex = Math.round(scrollLeft / itemWidth);
 
-    if (newIndex !== carouselState.currentIndex) {
+    if (
+      newIndex !== carouselState.currentIndex &&
+      newIndex >= 0 &&
+      newIndex <= maxIndex
+    ) {
       setCurrentIndex(newIndex);
     }
-  }, [totalItems, carouselState.currentIndex, setCurrentIndex, needsScrolling]);
+  }, [carouselState.currentIndex, setCurrentIndex, needsScrolling, maxIndex]);
 
   useEffect(() => {
     const carousel = carouselRef.current;
@@ -253,8 +279,9 @@ export const useCarousel = (totalItems: number, visibleItems: number = 8) => {
     return () => carousel.removeEventListener('scroll', handleScroll);
   }, [handleScroll, needsScrolling]);
 
-  const canScrollLeft = needsScrolling && totalItems > 0;
-  const canScrollRight = needsScrolling && totalItems > 0;
+  const canScrollLeft = needsScrolling && carouselState.currentIndex > 0;
+  const canScrollRight =
+    needsScrolling && carouselState.currentIndex < maxIndex;
 
   return {
     carouselRef,
