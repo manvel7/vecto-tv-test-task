@@ -1,0 +1,319 @@
+.video-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: var(--card-aspect-ratio, 2/3);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-bg-secondary);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.video-card:hover,
+.video-card--hovered {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-xl), var(--shadow-glow);
+  z-index: 2;
+}
+
+.video-card--active {
+  transform: scale(1.1);
+  box-shadow:
+    var(--shadow-2xl),
+    0 0 30px rgba(102, 126, 234, 0.5);
+  z-index: 3;
+}
+
+.video-card--recently-viewed {
+  border: 2px solid var(--color-primary);
+}
+
+/* Cover Image */
+.video-card__cover {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.video-card__cover-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.video-card:hover .video-card__cover-image,
+.video-card--hovered .video-card__cover-image {
+  transform: scale(1.1);
+}
+
+.video-card__cover-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.video-card:hover .video-card__cover-overlay,
+.video-card--hovered .video-card__cover-overlay {
+  opacity: 1;
+}
+
+/* Recently Viewed Badge */
+.video-card__recently-viewed-badge {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-2);
+  width: 24px;
+  height: 24px;
+  background: var(--color-primary);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-md);
+  z-index: 2;
+}
+
+.video-card__recently-viewed-icon {
+  font-size: 12px;
+  line-height: 1;
+}
+
+/* Active Indicator */
+.video-card__active-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-lg);
+  z-index: 3;
+  animation: pulse 2s infinite;
+}
+
+.video-card__active-icon {
+  font-size: 20px;
+  line-height: 1;
+}
+
+/* Title */
+.video-card__title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--space-3);
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(0, 0, 0, 0.6) 50%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  opacity: 0;
+  transform: translateY(100%);
+  transition: all var(--transition-normal);
+}
+
+.video-card:hover .video-card__title,
+.video-card--hovered .video-card__title {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.video-card__title-text {
+  color: var(--color-text-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-tight);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Pulse animation for active indicator */
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Focus states for accessibility */
+.video-card:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-lg);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .video-card {
+    aspect-ratio: 3/4;
+  }
+
+  .video-card__title {
+    padding: var(--space-2);
+  }
+
+  .video-card__title-text {
+    font-size: var(--font-size-xs);
+  }
+
+  .video-card__active-indicator {
+    width: 40px;
+    height: 40px;
+  }
+
+  .video-card__active-icon {
+    font-size: 16px;
+  }
+
+  .video-card__recently-viewed-badge {
+    width: 20px;
+    height: 20px;
+  }
+
+  .video-card__recently-viewed-icon {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .video-card {
+    aspect-ratio: 4/5;
+  }
+
+  .video-card:hover,
+  .video-card--hovered {
+    transform: scale(1.02);
+  }
+
+  .video-card--active {
+    transform: scale(1.05);
+  }
+
+  .video-card__title {
+    padding: var(--space-1);
+  }
+
+  .video-card__title-text {
+    font-size: var(--font-size-xs);
+    -webkit-line-clamp: 1;
+  }
+}
+
+/* TV-specific optimizations */
+@media (min-width: 1920px) {
+  .video-card {
+    aspect-ratio: 2/3;
+  }
+
+  .video-card__title {
+    padding: var(--space-4);
+  }
+
+  .video-card__title-text {
+    font-size: var(--font-size-base);
+  }
+
+  .video-card__active-indicator {
+    width: 56px;
+    height: 56px;
+  }
+
+  .video-card__active-icon {
+    font-size: 24px;
+  }
+
+  .video-card__recently-viewed-badge {
+    width: 28px;
+    height: 28px;
+  }
+
+  .video-card__recently-viewed-icon {
+    font-size: 14px;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .video-card {
+    border: 2px solid var(--color-text-primary);
+  }
+
+  .video-card--recently-viewed {
+    border: 3px solid var(--color-primary);
+  }
+
+  .video-card__cover-overlay {
+    background: rgba(0, 0, 0, 0.9);
+  }
+
+  .video-card__title {
+    background: rgba(0, 0, 0, 0.95);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .video-card {
+    transition: none;
+  }
+
+  .video-card:hover,
+  .video-card--hovered,
+  .video-card--active {
+    transform: none;
+  }
+
+  .video-card__cover-image {
+    transition: none;
+  }
+
+  .video-card:hover .video-card__cover-image,
+  .video-card--hovered .video-card__cover-image {
+    transform: none;
+  }
+
+  .video-card__title {
+    transition: none;
+  }
+
+  .video-card:hover .video-card__title,
+  .video-card--hovered .video-card__title {
+    transform: none;
+  }
+
+  .video-card__active-indicator {
+    animation: none;
+  }
+}

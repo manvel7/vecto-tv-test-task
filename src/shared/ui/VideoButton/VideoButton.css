@@ -1,0 +1,229 @@
+.video-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 24px var(--space-5); /* Added 24px top/bottom padding */
+  border: none;
+  border-radius: var(--radius-3xl); /* Increased to 3xl for even more rounded corners */
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--color-text-primary);
+  min-width: 120px;
+}
+
+.video-button--sm {
+  padding: 8px var(--space-3); /* Added 20px top/bottom padding */
+  font-size: var(--font-size-xs);
+  min-width: 100px;
+}
+
+.video-button--md {
+  padding: 24px var(--space-5); /* Added 24px top/bottom padding */
+  font-size: var(--font-size-sm);
+  min-width: 120px;
+}
+
+.video-button--lg {
+  padding: 28px var(--space-7); /* Added 28px top/bottom padding */
+  font-size: var(--font-size-base);
+  min-width: 140px;
+}
+
+/* Play button styles */
+.video-button--play {
+  background: #ffffff; /* White background */
+  color: #000000; /* Black text */
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.video-button--play:hover:not(:disabled) {
+  background: #f8f9fa; /* Light gray on hover */
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.video-button--play:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: var(--shadow-md);
+}
+
+/* Info button styles */
+.video-button--info {
+  background: var(--color-primary); /* Blue background */
+  color: #ffffff; /* White text */
+  border: 1px solid var(--color-primary);
+  backdrop-filter: blur(10px);
+}
+
+.video-button--info:hover:not(:disabled) {
+  background: var(--color-primary-light);
+  border-color: var(--color-primary-light);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.video-button--info:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* Disabled state */
+.video-button--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Loading state */
+.video-button--loading {
+  cursor: wait;
+}
+
+.video-button--loading .video-button__icon {
+  animation: spin 1s linear infinite;
+}
+
+/* Icon and label */
+.video-button__icon {
+  font-size: 1.2em;
+  line-height: 1;
+  transition: transform var(--transition-fast);
+}
+
+.video-button__label {
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* Hover effects */
+.video-button:hover:not(:disabled) .video-button__icon {
+  transform: scale(1.1);
+}
+
+/* Focus states for accessibility */
+.video-button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-lg);
+}
+
+/* Ripple effect */
+.video-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.3s,
+    height 0.3s;
+}
+
+.video-button:active::before {
+  width: 200px;
+  height: 200px;
+}
+
+/* Spinner animation for loading */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .video-button {
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--font-size-xs);
+    min-width: 100px;
+  }
+
+  .video-button--lg {
+    padding: var(--space-3) var(--space-6);
+    font-size: var(--font-size-sm);
+    min-width: 120px;
+  }
+}
+
+@media (max-width: 768px) {
+  .video-button {
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--font-size-xs);
+    min-width: 80px;
+  }
+
+  .video-button__label {
+    font-size: var(--font-size-xs);
+    white-space: nowrap;
+  }
+
+  .video-button__icon {
+    font-size: 1.2em;
+  }
+}
+
+/* TV-specific optimizations */
+@media (min-width: 1920px) {
+  .video-button {
+    padding: var(--space-4) var(--space-8);
+    font-size: var(--font-size-base);
+    min-width: 160px;
+  }
+
+  .video-button--lg {
+    padding: var(--space-5) var(--space-10);
+    font-size: var(--font-size-lg);
+    min-width: 180px;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .video-button {
+    border: 2px solid currentColor;
+  }
+
+  .video-button--play {
+    background: var(--color-primary);
+  }
+
+  .video-button--info {
+    background: var(--color-bg-secondary);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .video-button {
+    transition: none;
+  }
+
+  .video-button:hover {
+    transform: none;
+  }
+
+  .video-button__icon {
+    transition: none;
+  }
+
+  .video-button--loading .video-button__icon {
+    animation: none;
+  }
+}

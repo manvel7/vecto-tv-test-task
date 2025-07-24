@@ -1,0 +1,1 @@
+export { FeaturedVideo } from './FeaturedVideo';

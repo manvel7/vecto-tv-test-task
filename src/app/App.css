@@ -1,0 +1,23 @@
+/* App-level styles */
+.app {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Ensure proper box sizing */
+.app * {
+  box-sizing: border-box;
+}
+
+/* Focus management for TV navigation */
+.app:focus {
+  outline: none;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .app {
+    background: #000000;
+    color: #ffffff;
+  }
+}

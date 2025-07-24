@@ -1,0 +1,100 @@
+.error-boundary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  color: white;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.error-boundary__content {
+  text-align: center;
+  max-width: 500px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 3rem 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.error-boundary__title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  color: #ffffff;
+}
+
+.error-boundary__message {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0 0 2rem 0;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.error-boundary__button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.error-boundary__button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.error-boundary__button:active {
+  transform: translateY(0);
+}
+
+.error-boundary__details {
+  margin-top: 2rem;
+  text-align: left;
+}
+
+.error-boundary__details summary {
+  cursor: pointer;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1rem;
+}
+
+.error-boundary__error-stack {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  color: #ff6b6b;
+  border: 1px solid rgba(255, 107, 107, 0.3);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .error-boundary {
+    padding: 1rem;
+  }
+
+  .error-boundary__content {
+    padding: 2rem 1.5rem;
+  }
+
+  .error-boundary__title {
+    font-size: 1.5rem;
+  }
+
+  .error-boundary__message {
+    font-size: 1rem;
+  }
+}
