@@ -287,20 +287,6 @@ export const TrendingCarousel: React.FC<TrendingCarouselProps> = ({
             >
               ›
             </button>
-            <button
-              className='trending-carousel__control'
-              onClick={() => {
-                if (carouselRef.current) {
-                  carouselRef.current.scrollBy({
-                    left: 200,
-                    behavior: 'smooth',
-                  });
-                }
-              }}
-              style={{ marginLeft: '8px', fontSize: '12px' }}
-            >
-              Test
-            </button>
           </div>
         )}
       </div>
