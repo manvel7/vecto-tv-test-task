@@ -101,30 +101,30 @@ export const useCarousel = (totalItems: number, visibleItems: number = 8) => {
 
   const scrollLeft = useCallback(() => {
     if (!carouselRef.current) return;
-    
+
     const currentScrollLeft = carouselRef.current.scrollLeft;
     const scrollAmount = 216; // 200px item + 16px gap
-    
+
     carouselRef.current.scrollTo({
       left: Math.max(0, currentScrollLeft - scrollAmount),
       behavior: 'smooth',
     });
-    
+
     const newIndex = Math.max(0, carouselState.currentIndex - 1);
     setCurrentIndex(newIndex);
   }, [carouselState.currentIndex, setCurrentIndex]);
 
   const scrollRight = useCallback(() => {
     if (!carouselRef.current) return;
-    
+
     const currentScrollLeft = carouselRef.current.scrollLeft;
     const scrollAmount = 216; // 200px item + 16px gap
-    
+
     carouselRef.current.scrollTo({
       left: currentScrollLeft + scrollAmount,
       behavior: 'smooth',
     });
-    
+
     const newIndex = Math.min(maxIndex, carouselState.currentIndex + 1);
     setCurrentIndex(newIndex);
   }, [carouselState.currentIndex, maxIndex, setCurrentIndex]);
