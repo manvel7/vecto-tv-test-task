@@ -59,6 +59,8 @@
   cursor: grab;
   user-select: none;
   padding: var(--space-2) 0;
+  touch-action: pan-x;
+  -webkit-overflow-scrolling: touch;
 }
 
 .trending-carousel__track:active {
@@ -74,6 +76,7 @@
   transition: all var(--transition-fast);
   background: var(--color-bg-secondary);
   box-shadow: var(--shadow-md);
+  touch-action: pan-y pinch-zoom;
 }
 
 .trending-carousel__video-card:hover,

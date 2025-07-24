@@ -62,6 +62,7 @@ export const TrendingCarousel: React.FC<TrendingCarouselProps> = ({
     scrollLeft,
     scrollRight,
     scrollToIndex,
+    scrollToCenterItem,
     handleMouseDown,
     handleMouseMove,
     handleMouseUp,
@@ -70,6 +71,7 @@ export const TrendingCarousel: React.FC<TrendingCarouselProps> = ({
     handleTouchMove,
     handleTouchEnd,
     handleKeyDown,
+    isTouchTap,
   } = useCarousel(sortedVideos.length, visibleItems);
 
   // Memoized event handlers
@@ -82,10 +84,10 @@ export const TrendingCarousel: React.FC<TrendingCarouselProps> = ({
       onVideoClick?.(video);
       onVideoSelect?.(video);
 
-      // Auto-scroll to center the selected video
+      // Auto-scroll to center the selected video (better for mobile)
       const videoIndex = sortedVideos.findIndex(v => v.id === video.id);
       if (videoIndex !== -1) {
-        scrollToIndex(Math.max(0, videoIndex - Math.floor(visibleItems / 2)));
+        scrollToCenterItem(videoIndex);
       }
     },
     [
@@ -93,8 +95,7 @@ export const TrendingCarousel: React.FC<TrendingCarouselProps> = ({
       onVideoClick,
       onVideoSelect,
       sortedVideos,
-      scrollToIndex,
-      visibleItems,
+      scrollToCenterItem,
     ]
   );
 
@@ -155,6 +156,13 @@ export const TrendingCarousel: React.FC<TrendingCarouselProps> = ({
       const handleMouseEnter = () => handleVideoHover(video.id);
       const handleMouseLeave = () => handleVideoHover(null);
 
+      // Enhanced touch handling for mobile
+      const handleTouchEnd = () => {
+        if (isTouchTap()) {
+          handleClick();
+        }
+      };
+
       return (
         <div
           key={video.id}
@@ -168,6 +176,7 @@ export const TrendingCarousel: React.FC<TrendingCarouselProps> = ({
           onClick={handleClick}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
+          onTouchEnd={handleTouchEnd}
           role='button'
           tabIndex={0}
           aria-label={`Select ${video.title}`}
@@ -195,6 +204,7 @@ export const TrendingCarousel: React.FC<TrendingCarouselProps> = ({
       isRecentlyViewed,
       handleVideoClick,
       handleVideoHover,
+      isTouchTap,
     ]
   );
 

@@ -23,8 +23,10 @@ const imageMap: Record<string, string> = {
 // Data fetching utilities
 export const fetchVideoData = async (): Promise<RawDataStructure> => {
   try {
-    // Use the public folder path for static files
-    const response = await fetch('/data.json');
+    // Use the correct path for GitHub Pages deployment
+    const basePath =
+      process.env.NODE_ENV === 'development' ? '' : '/vecto-tv-test-task';
+    const response = await fetch(`${basePath}/data.json`);
     if (!response.ok) {
       throw new Error(`Failed to fetch data: ${response.status}`);
     }

@@ -10,6 +10,10 @@ export const useCarousel = (totalItems: number, visibleItems: number = 8) => {
     isAutoScrolling: false,
   });
 
+  // Add touch tracking for better mobile interaction
+  const [touchStartTime, setTouchStartTime] = useState<number>(0);
+  const [touchDistance, setTouchDistance] = useState<number>(0);
+
   const carouselRef = useRef<HTMLDivElement>(null);
   const maxIndex = Math.max(0, totalItems - visibleItems);
   const needsScrolling = totalItems > visibleItems;
@@ -58,6 +62,26 @@ export const useCarousel = (totalItems: number, visibleItems: number = 8) => {
       setCurrentIndex(clampedIndex);
     },
     [maxIndex, totalItems, setCurrentIndex, needsScrolling]
+  );
+
+  // Enhanced scroll to center an item (useful for mobile clicks)
+  const scrollToCenterItem = useCallback(
+    (itemIndex: number) => {
+      if (!carouselRef.current || !needsScrolling) return;
+
+      const containerWidth = carouselRef.current.clientWidth;
+      const itemWidth = carouselRef.current.scrollWidth / totalItems;
+      const centerOffset = containerWidth / 2 - itemWidth / 2;
+      const scrollPosition = itemIndex * itemWidth - centerOffset;
+
+      carouselRef.current.scrollTo({
+        left: Math.max(0, scrollPosition),
+        behavior: 'smooth',
+      });
+
+      setCurrentIndex(itemIndex);
+    },
+    [totalItems, setCurrentIndex, needsScrolling]
   );
 
   const scrollLeft = useCallback(() => {
@@ -128,6 +152,9 @@ export const useCarousel = (totalItems: number, visibleItems: number = 8) => {
       const carousel = carouselRef.current;
       if (!carousel || !needsScrolling) return;
 
+      setTouchStartTime(Date.now());
+      setTouchDistance(0);
+
       setCarouselState(prev => ({
         ...prev,
         isDragging: true,
@@ -146,6 +173,9 @@ export const useCarousel = (totalItems: number, visibleItems: number = 8) => {
       const x = e.touches[0].pageX - carousel.offsetLeft;
       const walk = (x - carouselState.startX) * 2;
       carousel.scrollLeft = carouselState.scrollLeft - walk;
+
+      // Track touch distance for better mobile interaction
+      setTouchDistance(Math.abs(walk));
     },
     [
       carouselState.isDragging,
@@ -194,6 +224,14 @@ export const useCarousel = (totalItems: number, visibleItems: number = 8) => {
     setCarouselState(prev => ({ ...prev, isAutoScrolling: false }));
   }, []);
 
+  // Helper function to determine if touch was a tap (not a drag)
+  const isTouchTap = useCallback(() => {
+    const touchDuration = Date.now() - touchStartTime;
+    const isShortTouch = touchDuration < 300; // Less than 300ms
+    const isSmallDistance = touchDistance < 10; // Less than 10px movement
+    return isShortTouch && isSmallDistance;
+  }, [touchStartTime, touchDistance]);
+
   const handleScroll = useCallback(() => {
     const carousel = carouselRef.current;
     if (!carousel || !needsScrolling) return;
@@ -230,6 +268,7 @@ export const useCarousel = (totalItems: number, visibleItems: number = 8) => {
     needsScrolling,
     setCurrentIndex,
     scrollToIndex,
+    scrollToCenterItem,
     scrollLeft,
     scrollRight,
     scrollToStart,
@@ -244,5 +283,6 @@ export const useCarousel = (totalItems: number, visibleItems: number = 8) => {
     handleKeyDown,
     startAutoScroll,
     stopAutoScroll,
+    isTouchTap,
   };
 };
