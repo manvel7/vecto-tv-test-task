@@ -53,6 +53,7 @@
   overflow-y: hidden;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  max-width: 100%;
 }
 
 .trending-carousel__container::-webkit-scrollbar {
@@ -69,6 +70,8 @@
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
   min-width: max-content;
+  width: max-content;
+  flex-wrap: nowrap;
 }
 
 .trending-carousel__track:active {
@@ -85,6 +88,7 @@
   background: var(--color-bg-secondary);
   box-shadow: var(--shadow-md);
   touch-action: pan-y pinch-zoom;
+  min-width: 200px;
 }
 
 .trending-carousel__video-card:hover,

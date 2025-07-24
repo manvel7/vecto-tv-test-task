@@ -42,7 +42,7 @@ export const useCarousel = (totalItems: number, visibleItems: number = 8) => {
 
   const scrollToIndex = useCallback(
     (index: number) => {
-      if (!carouselRef.current || !needsScrolling) return;
+      if (!carouselRef.current) return;
 
       let clampedIndex = index;
       if (index < 0) {
@@ -69,7 +69,7 @@ export const useCarousel = (totalItems: number, visibleItems: number = 8) => {
 
       setCurrentIndex(clampedIndex);
     },
-    [maxIndex, setCurrentIndex, needsScrolling]
+    [maxIndex, setCurrentIndex]
   );
 
   // Enhanced scroll to center an item (useful for mobile clicks)
@@ -100,16 +100,34 @@ export const useCarousel = (totalItems: number, visibleItems: number = 8) => {
   );
 
   const scrollLeft = useCallback(() => {
-    if (!needsScrolling) return;
-    const newIndex = carouselState.currentIndex - 1;
-    scrollToIndex(newIndex);
-  }, [carouselState.currentIndex, scrollToIndex, needsScrolling]);
+    if (!carouselRef.current) return;
+    
+    const currentScrollLeft = carouselRef.current.scrollLeft;
+    const scrollAmount = 216; // 200px item + 16px gap
+    
+    carouselRef.current.scrollTo({
+      left: Math.max(0, currentScrollLeft - scrollAmount),
+      behavior: 'smooth',
+    });
+    
+    const newIndex = Math.max(0, carouselState.currentIndex - 1);
+    setCurrentIndex(newIndex);
+  }, [carouselState.currentIndex, setCurrentIndex]);
 
   const scrollRight = useCallback(() => {
-    if (!needsScrolling) return;
-    const newIndex = carouselState.currentIndex + 1;
-    scrollToIndex(newIndex);
-  }, [carouselState.currentIndex, scrollToIndex, needsScrolling]);
+    if (!carouselRef.current) return;
+    
+    const currentScrollLeft = carouselRef.current.scrollLeft;
+    const scrollAmount = 216; // 200px item + 16px gap
+    
+    carouselRef.current.scrollTo({
+      left: currentScrollLeft + scrollAmount,
+      behavior: 'smooth',
+    });
+    
+    const newIndex = Math.min(maxIndex, carouselState.currentIndex + 1);
+    setCurrentIndex(newIndex);
+  }, [carouselState.currentIndex, maxIndex, setCurrentIndex]);
 
   const scrollToStart = useCallback(() => {
     if (!needsScrolling) return;

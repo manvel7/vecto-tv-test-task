@@ -104,10 +104,12 @@ export const TrendingCarousel: React.FC<TrendingCarouselProps> = ({
   }, []);
 
   const handleScrollLeft = useCallback(() => {
+    console.log('Left button clicked, carouselRef exists:', !!carouselRef.current);
     scrollLeft();
   }, [scrollLeft]);
 
   const handleScrollRight = useCallback(() => {
+    console.log('Right button clicked, carouselRef exists:', !!carouselRef.current);
     scrollRight();
   }, [scrollRight]);
 
@@ -279,6 +281,7 @@ export const TrendingCarousel: React.FC<TrendingCarouselProps> = ({
             >
               ›
             </button>
+
           </div>
         )}
       </div>
