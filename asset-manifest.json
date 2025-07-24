@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/vecto-tv-test-task/static/css/main.0719928a.css",
-    "main.js": "/vecto-tv-test-task/static/js/main.1cca1c92.js",
+    "main.js": "/vecto-tv-test-task/static/js/main.f31eb4f8.js",
     "index.html": "/vecto-tv-test-task/index.html",
     "main.0719928a.css.map": "/vecto-tv-test-task/static/css/main.0719928a.css.map",
-    "main.1cca1c92.js.map": "/vecto-tv-test-task/static/js/main.1cca1c92.js.map"
+    "main.f31eb4f8.js.map": "/vecto-tv-test-task/static/js/main.f31eb4f8.js.map"
   },
   "entrypoints": [
     "static/css/main.0719928a.css",
-    "static/js/main.1cca1c92.js"
+    "static/js/main.f31eb4f8.js"
   ]
 }
