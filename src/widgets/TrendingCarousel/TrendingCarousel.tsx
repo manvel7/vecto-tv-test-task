@@ -264,31 +264,6 @@ export const TrendingCarousel: React.FC<TrendingCarouselProps> = ({
       {/* Section Header */}
       <div className='trending-carousel__header'>
         <h2 className='trending-carousel__title'>Trending Now</h2>
-        {/* Only show controls if scrolling is needed */}
-        {needsScrolling && (
-          <div className='trending-carousel__controls'>
-            <button
-              className={`trending-carousel__control trending-carousel__control--left ${
-                !canScrollLeft ? 'trending-carousel__control--disabled' : ''
-              }`}
-              onClick={handleScrollLeft}
-              disabled={!canScrollLeft}
-              aria-label='Scroll left'
-            >
-              ‹
-            </button>
-            <button
-              className={`trending-carousel__control trending-carousel__control--right ${
-                !canScrollRight ? 'trending-carousel__control--disabled' : ''
-              }`}
-              onClick={handleScrollRight}
-              disabled={!canScrollRight}
-              aria-label='Scroll right'
-            >
-              ›
-            </button>
-          </div>
-        )}
       </div>
 
       {/* Carousel Container */}
