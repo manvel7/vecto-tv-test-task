@@ -1,10 +1,5 @@
 // Utility function to get the correct asset path for both development and production
 export const getAssetPath = (path: string): string => {
-  // In development, use relative paths
-  if (process.env.NODE_ENV === 'development') {
-    return path;
-  }
-
   // In production (GitHub Pages), prepend the repository name
   return `/vecto-tv-test-task${path}`;
 };
