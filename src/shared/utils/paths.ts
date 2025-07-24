@@ -4,9 +4,9 @@ export const getAssetPath = (path: string): string => {
   if (process.env.NODE_ENV === 'development') {
     return path;
   }
-  
+
   // In production (GitHub Pages), prepend the repository name
-  return `/vecto-test-task${path}`;
+  return `/vecto-tv-test-task${path}`;
 };
 
 // Specific asset path helpers
@@ -17,4 +17,4 @@ export const getImagePath = (filename: string): string => {
 
 export const getIconPath = (filename: string): string => {
   return getAssetPath(`/assets/icons/${filename}`);
-}; 
+};
